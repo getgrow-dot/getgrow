@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Real Social Media Growth Simulation</title>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Resetting default margins and paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            padding: 20px;
+            background-color: #f0f0f0; /* Light grey background */
+        }
+
+        h1 {
+            color: #ff0044;
+            margin-bottom: 20px;
+            font-size: 36px;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); 
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        input[type="text"], select, input[type="number"], input[type="file"] {
+            width: 80%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .submit-btn {
+            background-color: #ff0044;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #e60039;
+        }
+
+        .payment-btn {
+            margin-top: 20px;
+            background-color: #00b0f0;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .payment-btn:hover {
+            background-color: #009ac8;
+        }
+
+        .info-text {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .platform-selector {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .platform-option {
+            margin-right: 20px;
+            cursor: pointer;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .platform-option i {
+            font-size: 30px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .platform-option p {
+            color: #333;
+            font-size: 14px;
+        }
+
+        .selected {
+            border: 2px solid #ff0044;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .total-payment {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ff0044;
+        }
+
+        .payment-details {
+            margin-top: 20px;
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-details h2 {
+            color: #ff0044;
+        }
+
+        .payment-details p {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .screenshot-upload {
+            margin-top: 15px;
+        }
+
+        .screenshot-upload input[type="file"] {
+            padding: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Get Real Social Media Growth</h1>
+        <p>Enter your username and select the platform and the number of followers, likes, views, and watch time you want to simulate:</p>
+
+        <!-- Platform Selection Section -->
+        <div class="platform-selector">
+            <div class="platform-option" id="tiktok-option" onclick="selectPlatform('tiktok')">
+                <i class="fab fa-tiktok"></i>
+                <p>TikTok</p>
+            </div>
+            <div class="platform-option" id="instagram-option" onclick="selectPlatform('instagram')">
+                <i class="fab fa-instagram"></i>
+                <p>Instagram</p>
+            </div>
+            <div class="platform-option" id="youtube-option" onclick="selectPlatform('youtube')">
+                <i class="fab fa-youtube"></i>
+                <p>YouTube</p>
+            </div>
+            <div class="platform-option" id="facebook-option" onclick="selectPlatform('facebook')">
+                <i class="fab fa-facebook"></i>
+                <p>Facebook</p>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <form action="#" method="POST" onsubmit="handleSubmit(event)">
+            <input type="text" id="social-username" name="social_username" placeholder="Your Username" required />
+
+            <!-- Followers selection -->
+            <select id="followers">
+                <option value="0">Select Followers</option>
+                <option value="500">500 Followers</option>
+                <option value="1000">1,000 Followers</option>
+                <option value="5000">5,000 Followers</option>
+                <option value="10000">10,000 Followers</option>
+            </select>
+
+            <!-- Likes selection -->
+            <select id="likes">
+                <option value="0">Select Likes</option>
+                <option value="500">500 Likes</option>
+                <option value="1000">1,000 Likes</option>
+                <option value="5000">5,000 Likes</option>
+                <option value="10000">10,000 Likes</option>
+            </select>
+
+            <!-- Views selection -->
+            <select id="views">
+                <option value="0">Select Views</option>
+                <option value="5000">5,000 Views</option>
+                <option value="10000">10,000 Views</option>
+                <option value="50000">50,000 Views</option>
+                <option value="100000">100,000 Views</option>
+            </select>
+
+            <!-- Watch Time selection for YouTube -->
+            <div id="watch-time-container" style="display: none;">
+                <input type="number" id="watch-time" name="watch-time" placeholder="Watch Time (in hours)" min="1" />
+            </div>
+
+            <button class="submit-btn" type="submit">Submit</button>
+        </form>
+
+        <p class="info-text">Note: After Payment Just Wait for A Moments And Then Upload Your Payment Screenshot</p>
+
+        <div class="total-payment" id="total-payment"></div>
+
+        <!-- Payment Details Section (Hidden initially) -->
+        <div id="payment-details" class="payment-details" style="display: none;">
+            <h2>Payment Information</h2>
+            <p>To proceed with the simulation, please pay the calculated amount using JazzCash:</p>
+            <p><strong>Account: 03274098835</strong><br>Account Name: Saleem Raza</p>
+
+            <!-- Screenshot upload -->
+            <div class="screenshot-upload">
+                <label for="screenshot">Upload your payment screenshot:</label>
+                <input type="file" id="screenshot" name="screenshot" accept="image/*">
+            </div>
+
+            <!-- Screenshot Submit Button -->
+            <button class="payment-btn" type="button" onclick="submitScreenshot()">Submit Screenshot</button>
+        </div>
+    </div>
+
+    <script>
+        let selectedPlatform = '';
+
+        // Select platform and highlight the chosen one
+        function selectPlatform(platform) {
+            selectedPlatform = platform;
+
+            // Reset all options
+            document.querySelectorAll('.platform-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+
+            // Highlight selected option
+            document.getElementById(platform + '-option').classList.add('selected');
+
+            // Show watch time input for YouTube
+            if (platform === 'youtube') {
+                document.getElementById('watch-time-container').style.display = 'block';
+            } else {
+                document.getElementById('watch-time-container').style.display = 'none';
+            }
+        }
+
+        // Handle form submission
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            // Get selected values
+            const platform = selectedPlatform;
+            const followers = parseInt(document.getElementById('followers').value);
+            const likes = parseInt(document.getElementById('likes').value);
+            const views = parseInt(document.getElementById('views').value);
+            const watchTime = platform === 'youtube' ? parseInt(document.getElementById('watch-time').value) : 0;
+
+            // Calculate the total payment in PKR
+            const followersPayment = followers * 0.1;
+            const likesPayment = likes * 0.1;
+            const viewsPayment = views * 0.1;
+            const watchTimePayment = platform === 'youtube' ? watchTime * 1 : 0;
+
+            const totalPayment = followersPayment + likesPayment + viewsPayment + watchTimePayment;
+
+            // Display the total payment details
+            document.getElementById('total-payment').innerHTML = `
+                <strong>Total Payment:</strong><br>
+                Followers: ${followers} × 0.1 PKR = ${followersPayment} PKR<br>
+                Likes: ${likes} × 0.1 PKR = ${likesPayment} PKR<br>
+                Views: ${views} × 0.1 PKR = ${viewsPayment} PKR<br>
+                ${platform === 'youtube' ? `Watch Time: ${watchTime} hours × 1 PKR = ${watchTimePayment} PKR<br>` : ''}
+                <strong>Total: ${totalPayment} PKR</strong>
+            `;
+
+            // Show the payment details section
+            document.getElementById('payment-details').style.display = 'block';
+        }
+
+        // Function to handle screenshot submission
+        function submitScreenshot() {
+            const screenshotFile = document.getElementById('screenshot').files[0];
+            if (!screenshotFile) {
+                alert("Please upload a screenshot of your payment.");
+                return;
+            }
+            alert("Screenshot submitted successfully. We'll process your request soon!");
+        }
+    </script>
+
+</body>
+</html>
